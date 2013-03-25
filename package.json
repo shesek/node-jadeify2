@@ -1,0 +1,33 @@
+{
+  "name": "jadeify2",
+  "version": "0.0.0",
+  "description": "Browserify transformer for precompiling client-side Jade templates",
+  "author": {
+    "name": "Oliver Joseph Ash",
+    "email": "oliverjash@icloud.com"
+  },
+  "main": "index",
+  "engine": ">=0.6",
+  "scripts": {
+    "test": "mocha"
+  },
+  "tags": [
+    "jade",
+    "templates",
+    "browserify",
+    "precompile"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:OliverJAsh/node-jadeify2"
+  },
+  "license": "BSD",
+  "dependencies": {
+    "through": "~2.2.7",
+    "jade": "~0.28.2"
+  },
+  "devDependencies": {
+    "mocha": "~1.8.2",
+    "should": "~1.2.2"
+  }
+}
