@@ -1,6 +1,7 @@
 var
   through = require('through'),
-  jade = require('jade')
+  jade = require('jade'),
+  relative = require('path').relative
 
 module.exports = browjadify
 
@@ -30,8 +31,7 @@ function browjadify(file) {
 function compile(file, source) {
   var template = jade.compile(source, {
     client: true,
-    filename: true,
-    path: __dirname
+    filename: relative(__dirname, file)
   })
   return [
     'var jade = require(\'jade/lib/runtime.js\');',

@@ -1,6 +1,6 @@
 var jade = require('jade/lib/runtime.js');module.exports = function anonymous(locals, attrs, escape, rethrow, merge) {
 attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow || jade.rethrow; merge = merge || jade.merge;
-var __jade = [{ lineno: 1, filename: true }];
+var __jade = [{ lineno: 1, filename: "test/include/example.jade" }];
 try {
 var buf = [];
 with (locals || {}) {
@@ -24,8 +24,10 @@ __jade.shift();
 __jade.unshift({ lineno: 5, filename: __jade[0].filename });
 buf.push('<body>');
 __jade.unshift({ lineno: undefined, filename: __jade[0].filename });
-__jade.unshift({ lineno: 5, filename: __jade[0].filename });
+__jade.unshift({ lineno: 1, filename: "test/include/include.jade" });
+__jade.unshift({ lineno: 1, filename: __jade[0].filename });
 buf.push('Hello, World!');
+__jade.shift();
 __jade.shift();
 __jade.shift();
 buf.push('</body>');
