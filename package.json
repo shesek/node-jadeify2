@@ -1,6 +1,6 @@
 {
   "name": "jadeify2",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Browserify transformer for precompiling client-side Jade templates",
   "author": {
     "name": "Oliver Joseph Ash",
@@ -28,6 +28,8 @@
   },
   "devDependencies": {
     "mocha": "~1.8.2",
-    "should": "~1.2.2"
+    "should": "~1.2.2",
+    "grunt": "~0.4.1",
+    "grunt-release": "~0.3.3"
   }
 }
