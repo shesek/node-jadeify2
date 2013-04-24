@@ -2,7 +2,8 @@
 
 var
   transform = require('./transform'),
-  fs = require('fs')
+  fs = require('fs'),
+  jadeify = require('../')
 
 require('should')
 
@@ -11,7 +12,10 @@ describe('node-jadeify2', function () {
   it('should compile Jade template', function (done) {
     transform(__dirname + '/simple/example.jade', function (err, output) {
       if (err) done(err)
-      output.should.eql(fs.readFileSync(__dirname + '/simple/example.js').toString())
+      var template = require(__dirname + '/simple/example.js')
+      template.should.be.a('function')
+      template().should.be.a('string')
+      template().length.should.be.above(0)
       done()
     })
   })
@@ -19,8 +23,26 @@ describe('node-jadeify2', function () {
   it('should compile Jade template with include', function (done) {
     transform(__dirname + '/include/example.jade', function (err, output) {
       if (err) done(err)
-      output.should.eql(fs.readFileSync(__dirname + '/include/example.js').toString())
+      var template = require(__dirname + '/include/example.js')
+      template.should.be.a('function')
+      template().should.be.a('string')
+      template().length.should.be.above(0)
       done()
     })
   })
+
+  it('should allow custom options to passed through to the jade compiler', function (done) {
+    var filename = __dirname + '/include/example.jade'
+      , stream = jadeify(filename, { linenos: false, filename: filename  })
+      , output = ''
+    stream.on('data', function (data) {
+      output += data
+    })
+    stream.on('end', function () {
+      output.indexOf('lineno').should.equal(-1)
+      done()
+    })
+    fs.createReadStream(filename).pipe(stream)
+  })
+
 })
