@@ -5,8 +5,10 @@ var
 
 module.exports = browjadify
 
-function browjadify(file) {
+function browjadify(file, options) {
   if (!/\.jade$/.test(file)) return through()
+
+  if (!options) options = { client: true, filename: relative(__dirname, file), compileDebug: false }
 
   var source = ''
   var stream = through(write, end)
@@ -17,7 +19,7 @@ function browjadify(file) {
 
   function end() {
     try {
-      var result = compile(file, source)
+      var result = compile(file, source, options)
       this.queue(result)
       this.queue(null)
     } catch (err) {
@@ -28,11 +30,8 @@ function browjadify(file) {
   return stream
 }
 
-function compile(file, source) {
-  var template = jade.compile(source, {
-    client: true,
-    filename: relative(__dirname, file)
-  })
+function compile(file, source, options) {
+  var template = jade.compile(source, options)
   return [
     'var jade = require(\'jade/lib/runtime.js\');',
     'module.exports = ',
