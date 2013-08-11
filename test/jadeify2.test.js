@@ -20,10 +20,21 @@ describe('node-jadeify2', function () {
     })
   })
 
-  it('should compile Jade template with include', function (done) {
+  it('should compile Jade template that uses the include operator', function (done) {
     transform(__dirname + '/include/example.jade', function (err, output) {
       if (err) done(err)
       var template = require(__dirname + '/include/example.js')
+      template.should.be.a('function')
+      template().should.be.a('string')
+      template().length.should.be.above(0)
+      done()
+    })
+  })
+
+  it('should compile Jade template that uses the extend operator', function (done) {
+    transform(__dirname + '/extend/example.jade', function (err, output) {
+      if (err) done(err)
+      var template = require(__dirname + '/extend/example.js')
       template.should.be.a('function')
       template().should.be.a('string')
       template().length.should.be.above(0)
