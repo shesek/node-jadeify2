@@ -11,9 +11,8 @@ $ npm install jadeify2
 ## Usage
 
 ``` js
-var 
-  browserify = require('browserify'),
-  jadeify2 = require('jadeify2')
+var browserify = require('browserify')
+var jadeify2 = require('jadeify2')
 
 var bundle = browserify()
 bundle.transform(jadeify2)
