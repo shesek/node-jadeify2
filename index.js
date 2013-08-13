@@ -1,7 +1,5 @@
-var
-  through = require('through'),
-  jade = require('jade'),
-  relative = require('path').relative
+var through = require('through')
+var jade = require('jade')
 
 module.exports = browjadify
 
