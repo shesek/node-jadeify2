@@ -1,6 +1,6 @@
 {
   "name": "jadeify2",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Browserify transformer for precompiling client-side Jade templates",
   "author": {
     "name": "Oliver Joseph Ash",
