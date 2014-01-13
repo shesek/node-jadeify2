@@ -29,7 +29,7 @@ function browjadify(file, options) {
 }
 
 function compile(file, source, options) {
-  var template = jade.compile(source, options)
+  var template = jade.compileClient(source, options)
   return [
     'var jade = require(\'jade/lib/runtime.js\');',
     'module.exports = ',
