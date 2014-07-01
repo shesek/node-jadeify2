@@ -6,7 +6,10 @@ module.exports = browjadify
 function browjadify(file, options) {
   if (!/\.jade$/.test(file)) return through()
 
-  if (!options) options = { client: true, filename: file, compileDebug: false }
+  options || (options = {})
+  options.client != null || (options.client = true)
+  options.compileDebug != null || (options.compileDebug = false)
+  options.filename || (options.filename = file)
 
   var source = ''
   var stream = through(write, end)
